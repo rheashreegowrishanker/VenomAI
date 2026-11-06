@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VenomAI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body id="top">
+
+  <nav class="nav">
+    <a class="logo" href="#top">VENOM_AI</a>
+    <div class="nav-links">
+      <a href="#resource">Resource</a>
+      <a href="#why">Why it matters</a>
+      <a href="#how">How to use</a>
+      <a href="#limits">Limits</a>
+      <a class="btn small" href="/tool">Explore tool</a>
+    </div>
+  </nav>
+
+  <!-- 1. HERO -->
+  <section class="panel hero">
+    <h1>VENOM_AI</h1>
+    <p class="tagline">Explainable machine learning for venom peptide targets and toxicity</p>
+    <a class="btn" href="/tool">Explore the tool</a>
+    <a class="scroll-cue" href="#resource">Scroll to learn more ↓</a>
+  </section>
+
+  <!-- 2. RESOURCE -->
+  <section class="panel" id="resource"><div class="inner">
+    <h2>What is VenomAI?</h2>
+    <p>VenomAI is a research tool that reads the amino-acid sequence of a venom peptide and estimates which kind of molecular target it most likely acts on, and whether it is likely to be toxic.</p>
+    <p>It was trained on curated records from ArachnoServer (spiders), ConoServer (cone snails) and UniProt, covering spider, scorpion and cone snail venoms.</p>
+    <div class="cards">
+      <div class="card"><h3>Target prediction</h3><p>Ranks the most likely target classes, such as ion channels, receptors, enzymes and membrane-associated targets.</p></div>
+      <div class="card"><h3>Toxicity check</h3><p>Shown only when the toxicity model passes our reliability checks.</p></div>
+      <div class="card"><h3>Explanations</h3><p>Every result links to the sequence features that pushed the model towards its answer.</p></div>
+    </div>
+  </div></section>
+
+  <!-- 3. WHY IT MATTERS -->
+  <section class="panel" id="why"><div class="inner">
+    <h2>Why does it matter?</h2>
+    <p>Venoms are libraries of thousands of peptides shaped by evolution to hit specific targets. Some became medicines, such as ziconotide, a painkiller derived from a cone snail peptide. Others inspire research tools and pest control.</p>
+    <p>Testing each peptide in the lab is slow and expensive. A computational first pass helps researchers decide which peptides to look at first.</p>
+    <p>A bare number isn't enough for a scientist. VenomAI shows <em>why</em> it answered the way it did, so the result can be questioned, not just trusted.</p>
+  </div></section>
+
+  <!-- 4. HOW TO USE -->
+  <section class="panel" id="how"><div class="inner">
+    <h2>How to use it</h2>
+    <ol class="steps">
+      <li><strong>Paste a sequence.</strong> Standard amino-acid letters only, 5 to 200 long.</li>
+      <li><strong>Choose the animal group.</strong> This doesn't change the prediction. It tells you how far to trust it.</li>
+      <li><strong>Read the result,</strong> then open "Why did the model say this?" to see what drove it.</li>
+    </ol>
+    <p>Always confirm important results against UniProt or ArachnoServer before relying on them.</p>
+    <a class="btn" href="/tool">Try it now</a>
+  </div></section>
+
+  <!-- 5. LIMITS -->
+  <section class="panel" id="limits"><div class="inner">
+    <h2>What it can and can't do</h2>
+    <div class="two-col">
+      <div class="card"><h3>It can</h3>
+        <ul>
+          <li>Rank the top three likely target classes with a confidence</li>
+          <li>Show which sequence features drove a prediction</li>
+          <li>Give a useful first pass for scorpion peptides</li>
+        </ul></div>
+      <div class="card"><h3>It can't</h3>
+        <ul>
+          <li>Replace laboratory experiments</li>
+          <li>Give a reliable toxicity verdict, because our toxicity model did not pass its checks</li>
+          <li>Cover snakes, bees or other venom sources</li>
+        </ul></div>
+    </div>
+    <h3>How well did it do in our tests?</h3>
+<table>
+  <tr><th>Animal group</th><th>Target score</th><th>Evidence level</th><th>Test peptides</th></tr>
+  <tr><td>Scorpion</td><td>about 0.64</td><td>Preliminary: mostly sodium and potassium channel examples</td><td>88</td></tr>
+  <tr><td>Spider</td><td>about 0.70</td><td>Preliminary: few examples beyond enzymes and sodium channels</td><td>42</td></tr>
+  <tr><td>Cone snail</td><td>about 0.68</td><td>Preliminary: some target classes have few examples</td><td>68</td></tr>
+</table>
+<p class="note">Score = balanced accuracy when the model is tested on one animal group at a time. Scores shift with how the data is split, so treat them as approximate.</p>
+</table>
+<p class="note">Lower scores reflect fewer examples per target class and labels read from database text, so these groups are flagged as a data limitation rather than a finished result.</p>
+    <!-- TODO: add the exact metric name (accuracy / balanced accuracy / F1) from your Colab results -->
+    <p class="note">Toxicity: not reliable. In our checks the model did not beat a simple length-and-cysteine baseline, and fell below our reliability threshold on a matched test.</p>
+    <p class="note">Target labels come from database text annotations, not direct experimental labelling.</p>
+  </div></section>
+
+  <!-- 6. THANK YOU -->
+  <section class="panel thanks">
+    <h2>Thank you for using VenomAI</h2>
+    <a class="btn" href="/tool">Analyse a peptide</a>
+    <a class="scroll-cue" href="#top">Back to top ↑</a>
+    <p class="fine">Data: UniProt, ArachnoServer, ConoServer. A research tool, not for clinical or safety decisions.</p>
+  </section>
+
+</body>
+</html>

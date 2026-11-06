@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VenomAI: Analyse a peptide</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="topbar"><a href="/">← VenomAI</a></header>
+
+  <main class="tool">
+    <h1>Analyse a peptide</h1>
+    <p class="hint">Paste one amino-acid sequence: letters only, 5 to 200 long.</p>
+
+    <label for="seq">Sequence</label>
+    <textarea id="seq" rows="4" placeholder="GCKEFGWPCNGEACCS"></textarea>
+
+    <label for="group">Which animal is it from?</label>
+    <select id="group">
+      <option value="scorpion">Scorpion</option>
+      <option value="spider">Spider</option>
+      <option value="cone_snail">Cone snail</option>
+      <option value="unknown">Not sure</option>
+    </select>
+    <p class="hint">This does not change the prediction. It only tells you how far to trust it.</p>
+
+    <button id="go" class="btn">Analyse</button>
+    <p id="error" class="error" hidden></p>
+
+    <div id="results" hidden>
+      <div class="card">
+        <h2>Most likely target</h2>
+        <p id="target-name" class="big"></p>
+        <p id="target-words"></p>
+        <h3>Top three candidates</h3>
+        <ul id="target-list"></ul>
+        <p id="group-note" class="note"></p>
+      </div>
+
+      <div class="card" id="tox-card">
+        <h2>Venom-like peptide vs Ordinary protein</h2>
+        <p id="tox-words"></p>
+      </div>
+
+      <a id="why-link" class="btn" href="#">Why did the model say this?</a>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
