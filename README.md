@@ -8,6 +8,18 @@ VenomAI takes the amino acid sequence of a spider, scorpion or cone snail venom 
 
 ---
 
+## Screenshots
+
+| Landing page | Tool page |
+|---|---|
+| ![Landing page](docs/home.png) | ![Tool page](docs/tool.png) |
+
+| Toxicity withheld | Why did the model say this? |
+|---|---|
+| ![Toxicity withheld](docs/toxicity-withheld.png) | ![Explanation page](docs/why.png) |
+
+*Example: an ordinary non-venom protein (human lysozyme) gets an "Unclear" answer at 33% confidence. The tool doesn't overclaim on peptides it hasn't learned.*
+
 ## Contents
 
 - [What it does](#what-it-does)
