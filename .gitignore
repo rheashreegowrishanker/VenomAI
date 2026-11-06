@@ -218,3 +218,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# ---------------------------------------------------------------
+# VenomAI project-specific
+# ---------------------------------------------------------------
+# Trained models: large and tied to exact library versions.
+# Share them through GitHub Releases instead of committing them.
+model/*.joblib
+*.joblib
+ 
+# Output of the Colab / training script and downloaded datasets
+VenomAI_v3_output/
+VenomAI_datasets.zip
+VenomAI_export.zip
+*.zip
+ 
+# Backups and local scratch files
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
